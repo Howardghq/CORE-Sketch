@@ -24,8 +24,6 @@ public class ExactDDSketch implements Serializable {
     private long data_size;
     private long pruned_size;
 
-    transient private double beta;
-    transient private final double[] valid_range;
     transient private long[] edge_num;
     transient private double[] median_range;
 
@@ -44,12 +42,10 @@ public class ExactDDSketch implements Serializable {
 
         this.gamma = 2 * alpha / (1 - alpha) + 1;
         this.multiplier = Math.log(Math.E) / (Math.log1p(gamma - 1));
-        this.beta = 1;
         this.positive_buckets = new HashMap<>((int) (bucket_num_limit * 0.75));
         this.negative_buckets = new HashMap<>((int) (bucket_num_limit * 0.25));
         this.zero_count = 0;
         this.collapse_bound = -Double.MAX_VALUE;
-        this.valid_range = new double[6];
         this.data_size = 0;
         this.pruned_size = 0;
         this.median_range = median_range;
@@ -144,10 +140,6 @@ public class ExactDDSketch implements Serializable {
         }
         Arrays.sort(buckets, Comparator.comparingDouble(o -> o.lower_bound));
         return buckets;
-    }
-
-    private long total_count() {
-        return positive_buckets.values().stream().mapToLong(l -> l).sum() + negative_buckets.values().stream().mapToLong(l -> l).sum() + zero_count;
     }
 
     private int find_p_index(Bucket[] buckets, long total_count) {

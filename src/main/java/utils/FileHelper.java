@@ -84,6 +84,7 @@ public class FileHelper {
         return StringUtils.join(tmp, sep);
     }
 
+    
     public static int GET_SIZE(Object v) {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         ObjectOutputStream oos;

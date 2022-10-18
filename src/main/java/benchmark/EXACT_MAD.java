@@ -7,6 +7,7 @@ public class EXACT_MAD {
     public static double memory = 0;
     public static double median = 0;
 
+
     public static double exact_mad(double[] data, int des) {
         memory = 0;
 
@@ -17,6 +18,7 @@ public class EXACT_MAD {
         }
 
         median = query(queue);
+//        System.out.println(median);
 
         queue.clear();
         for(int i = 0; i < des; i++){

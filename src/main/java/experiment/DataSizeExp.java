@@ -1,6 +1,6 @@
 package experiment;
 
-import benchmark.DD_MAD;
+import benchmark.*;
 import benchmark.EXACT_MAD;
 import benchmark.CORE_MAD;
 import mad.CORESketch;
@@ -38,7 +38,7 @@ public class DataSizeExp {
             System.out.println("Data Size: " + size);
             for (int n = 0; n < times; n++) {
                 double[] data = READ("/Users/howardguan/Documents/THU/DQ/" +
-                                "Query/Space MAD/dataset/gas.csv",
+                                "Query/Space MAD/dataset/disc_bitcoin.csv",
                         size, 10000000);
                 for (int i = 0; i < data.length; i++) {
                     // data[i] = Math.pow(sigma, 2) * r.nextGaussian() + mu;
@@ -55,12 +55,12 @@ public class DataSizeExp {
                 spaces_exact += exact;
                 double time_core = System.nanoTime();
                 double core = CORE_MAD.core_mad(data, maximum - minimum + 1,
-                        1, 7500, false);
+                        1, 30, true);
                 times_core += (System.nanoTime() - time_core) / 1000000;
                 spaces_core += core;
                 double time_dd = System.nanoTime();
                 double dd = DD_MAD.dd_mad(data, maximum - minimum + 1,
-                        1, 0.05, 7500, false);
+                        1, 0.05, 30, true);
                 times_dd += (System.nanoTime() - time_dd) / 1000000;
                 spaces_dd += dd;
 //                System.out.println("EXACT_TIME: " + time_exact / 1000000);

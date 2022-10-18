@@ -291,4 +291,5 @@ public class CORESketch implements Serializable {
     public void set_card(int card) {
         this.card = card;
     }
+
 }

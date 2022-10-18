@@ -22,7 +22,7 @@ public class SpaceLimitExp {
         double minimum = 100000;
         double maximum = -100000;
         double[] data = READ("/Users/howardguan/Documents/THU/DQ/" +
-                        "Query/Space MAD/dataset/power.csv",
+                        "Query/Space MAD/dataset/bitcoin.csv",
                 1000000, 5000000);
         for (int i = 0; i < data.length; i++) {
 //                data[i] = Math.pow(sigma, 2) * r.nextGaussian() + mu;

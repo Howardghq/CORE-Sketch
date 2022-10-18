@@ -10,8 +10,8 @@ import static utils.FileHelper.READ;
 public class Main {
     public static void main(String[] args) throws IOException {
         double[] data = READ("/Users/howardguan/Documents/THU/DQ/" +
-                        "Query/Space MAD/dataset/norm1.csv",
-                1000000, 10000000);
+                        "Query/Space MAD/dataset/bitcoin.csv",
+                10000000, 10000000);
 //        Random r = new Random();
         // double[] data = new double[10000000];
         // double mu = 4;
@@ -31,19 +31,19 @@ public class Main {
         double time_exact = System.nanoTime();
         double exact = EXACT_MAD.exact_mad(data, data.length);
         time_exact = System.nanoTime() - time_exact;
-        double time_core = System.nanoTime();
-        double core = CORE_MAD.core_mad(data, maximum - minimum + 1,
-                1, 500, true);
-        time_core = System.nanoTime() - time_core;
-        double time_dd = System.nanoTime();
-        double dd = DD_MAD.dd_mad(data, maximum - minimum + 1,
-                1, 0.1, 500, false);
-        time_dd = System.nanoTime() - time_dd;
-        System.out.println("EXACT_TIME: " + time_exact);
-        System.out.println("CORE_TIME: " + time_core);
-        System.out.println("DD_TIME: " + time_dd);
-        System.out.println("EXACT_MAD: " + exact);
-        System.out.println("CORE_MAD: " + core);
-        System.out.println("DD_MAD: " + dd);
+//        double time_core = System.nanoTime();
+//        double core = CORE_MAD.core_mad(data, maximum - minimum + 1,
+//                1, 500, true);
+//        time_core = System.nanoTime() - time_core;
+//        double time_dd = System.nanoTime();
+//        double dd = DD_MAD.dd_mad(data, maximum - minimum + 1,
+//                1, 0.1, 500, false);
+//        time_dd = System.nanoTime() - time_dd;
+//        System.out.println("EXACT_TIME: " + time_exact);
+//        System.out.println("CORE_TIME: " + time_core);
+//        System.out.println("DD_TIME: " + time_dd);
+//        System.out.println("EXACT_MAD: " + exact);
+//        System.out.println("CORE_MAD: " + core);
+//        System.out.println("DD_MAD: " + dd);
     }
 }

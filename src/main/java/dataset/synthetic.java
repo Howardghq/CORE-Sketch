@@ -17,8 +17,8 @@ public class synthetic {
 //        generateNormData(10000000, 1);
 //        generateParetoData(10000000, 1);
 //        generateDiscreteUniformData(10000000, 1);
-//        generateDirtyNormalData(10000000);
-        generateChiSquareData(10000000, 1);
+        generateDirtyData(10000000);
+//        generateChiSquareData(10000000, 1);
     }
 
     public static void generateChiSquareData(int n, int q) {
@@ -36,19 +36,20 @@ public class synthetic {
         }
     }
 
-    public static void generateDirtyNormalData(int n) {
+    public static void generateDirtyData(int n) {
         FileWriter fw;
         NormalDistribution norm = new NormalDistribution(2, 0.05);
-        BinomialDistribution bin = new BinomialDistribution(1, 0.05);
-        UniformRealDistribution uni = new UniformRealDistribution(0, 1);
+        UniformRealDistribution uni = new UniformRealDistribution(0, 0.1);
+        BinomialDistribution bin = new BinomialDistribution(1, 0.1);
+        UniformRealDistribution uni1 = new UniformRealDistribution(0, 1);
         NormalDistribution noise = new NormalDistribution(0.4, 0.1);
         try {
             fw = new FileWriter("/Users/howardguan/Documents/THU/DQ/Query/Space MAD/dataset/dirty.csv");
             fw.write("value\n");
             for(long i = 0; i < n; ++i){
-                double v = norm.sample();
+                double v = uni.sample() + uni.sample() + 1.9;
                 if (bin.sample() == 1) {
-                    if (uni.sample() <= 0.5) {
+                    if (uni1.sample() <= 0.5) {
                         v += noise.sample();
                     }
                     else {
